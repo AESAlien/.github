@@ -11,11 +11,15 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     id: traceability
     attributes:
       label: 관련 요구사항 및 설계
-      description: 추적이 필요한 요구사항이나 설계사항이 있을 때만 링크를 작성해 주세요.
-      placeholder: Notion 링크
+      description: 관련 요구사항이나 설계가 있다면 항목마다 이름과 링크를 한 줄씩 작성해 주세요.
+      placeholder: |
+        - [요구사항 1 이름](Notion 링크)
+        - [요구사항 2 이름](Notion 링크)
+        - [설계 1 이름](Notion 링크)
+        - [설계 2 이름](Notion 링크)
     validations:
       required: false
