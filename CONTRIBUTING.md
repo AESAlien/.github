@@ -32,21 +32,27 @@
 - 서로 다른 목적의 변경은 별도의 커밋으로 분리합니다.
 - GitHub 저장소에 `push`하기 전에 같은 목적의 자잘하게 나뉜 커밋은 `squash`합니다.
 
-## 명명 규칙
+## 네이밍 규칙
 
 | 대상 | 규칙 |
 | --- | --- |
+| 디렉터리 | `snake_case` |
+| 파일 | `snake_case` |
+| namespace | `snake_case` |
 | 클래스 | `PascalCase` |
 | 구조체 | `PascalCase` |
 | enum 타입 | `PascalCase` |
-| enum 값 | `PascalCase` |
-| 함수/메서드 | `camelCase` |
-| 지역 변수 | `camelCase` |
+| enum 값 | `UPPER_SNAKE_CASE` |
+| 함수 | `camelCase` |
+| 클래스의 메소드 | `camelCase` |
+| 클래스의 private 멤버 변수 | `_camelCase` |
+| 구조체의 public 멤버 변수 | `camelCase` |
 | 매개변수 | `camelCase` |
-| 상수 (`const`, `constexpr`) | `camelCase` |
-| private 멤버 변수 | `camelCase_` |
-| namespace | `snake_case` |
-| 파일/디렉터리 | `snake_case` |
+| 지역 변수 | `camelCase` |
+| 상수 | `UPPER_SNAKE_CASE` |
+
+- `ST_*` 형식의 구조체는 예외적으로 이 규칙을 따르지 않습니다.
+- 좌표계나 단위는 필요한 경우에만 이름에 `_ant_deg`와 같이 덧붙입니다.
 
 ## 설계 원칙
 
@@ -69,7 +75,7 @@
 class NumberPrinter
 {
 public:
-    void print(
+    void Print(
         const std::vector<int>& values,
         const std::string& title,
         int minimumValue) const
@@ -96,19 +102,19 @@ public:
                 break;
             }
 
-            std::cout << value << separator_;
+            std::cout << value << _separator;
         }
     }
 
 private:
-    char separator_ = '\n';
+    char _separator = '\n';
 };
 
 int main()
 {
     const std::vector<int> values = {1, 2, 3};
     NumberPrinter printer;
-    printer.print(
+    printer.Print(
         values,
         "Example numbers",
         0);
