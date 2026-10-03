@@ -64,22 +64,25 @@
 - **인터페이스 분리 원칙 (ISP)**: 사용하지 않는 기능에 의존하지 않도록 인터페이스를 작고 구체적으로 설계합니다.
 - **의존관계 역전 원칙 (DIP)**: 구체적인 구현보다 추상화에 의존하도록 합니다.
 
-## 코드 서식 (Microsoft 스타일)
+## 코드 포맷 (Microsoft 스타일)
 
 ```cpp
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
+namespace print
+{
 class NumberPrinter
 {
 public:
-    void Print(
+    void print(
         const std::vector<int>& values,
         const std::string& title,
-        int minimumValue) const
-    {
+        int minimumValue
+    ) const {
         if (values.empty())
         {
             std::cout << "No numbers" << '\n';
@@ -97,6 +100,7 @@ public:
             case 0:
                 std::cout << "Even: ";
                 break;
+
             default:
                 std::cout << "Odd: ";
                 break;
@@ -109,12 +113,20 @@ public:
 private:
     char _separator = '\n';
 };
+}
 
 int main()
 {
-    const std::vector<int> values = {1, 2, 3};
-    NumberPrinter printer;
-    printer.Print(
+    const int INITIAL_VALUES[] =
+    {
+        1,
+        2,
+        3
+    };
+
+    const std::vector<int> values(std::begin(INITIAL_VALUES), std::end(INITIAL_VALUES));
+    print::NumberPrinter printer;
+    printer.print(
         values,
         "Example numbers",
         0);
